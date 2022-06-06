@@ -20,9 +20,11 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 /**
- * 
+ *
+ * Author of the original version: David @ https://stackoverflow.com/users/1133011/david-kroukamp
  *
  */
+
 @SuppressWarnings("serial")
 public class AutoSuggestorTextField  extends JTextField {
 
@@ -31,7 +33,7 @@ public class AutoSuggestorTextField  extends JTextField {
     private JWindow autoSuggestionPopUpWindow;
     private String typedWord; 
 	private final List<String> dictionary = new ArrayList<>();
-    private int currentIndexOfSpace, tW, tH;
+    private int currentIndexOfSpace, tWidth, tHeight;
 	final String COMMIT_ACTION = "commit";
 	
     private DocumentListener documentListener = new DocumentListener() {
@@ -62,8 +64,8 @@ public class AutoSuggestorTextField  extends JTextField {
 
         this.typedWord = "";
         this.currentIndexOfSpace = 0;
-        this.tW = 0;
-        this.tH = 0;
+        this.tWidth = 0;
+        this.tHeight = 0;
 
         this.autoSuggestionPopUpWindow = new JWindow(mainWindow);
         this.autoSuggestionPopUpWindow.setOpacity(opacity);
@@ -161,8 +163,8 @@ public class AutoSuggestorTextField  extends JTextField {
         suggestionsPanel.removeAll();
 
         
-        tW = 0;
-        tH = 0;
+        tWidth = 0;
+        tHeight = 0;
 
         boolean added = wordTyped(typedWord);
 
@@ -200,16 +202,16 @@ public class AutoSuggestorTextField  extends JTextField {
     }
 
     private void calculatePopUpWindowSize(JLabel label) {
-        if (tW < label.getPreferredSize().width) {
-            tW = label.getPreferredSize().width;
+        if (tWidth < label.getPreferredSize().width) {
+            tWidth = label.getPreferredSize().width;
         }
-        tH += label.getPreferredSize().height;
+        tHeight += label.getPreferredSize().height;
     }
 
     private void showPopUpWindow() {
         autoSuggestionPopUpWindow.getContentPane().add(suggestionsPanel);
         autoSuggestionPopUpWindow.setMinimumSize(new Dimension(this.getWidth(), 30));
-        autoSuggestionPopUpWindow.setSize(tW, tH);
+        autoSuggestionPopUpWindow.setSize(tWidth, tHeight);
         autoSuggestionPopUpWindow.setVisible(true);
 
         int windowX = 0;

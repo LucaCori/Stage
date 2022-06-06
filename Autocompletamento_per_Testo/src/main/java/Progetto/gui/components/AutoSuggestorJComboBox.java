@@ -8,8 +8,10 @@ import progetto.Words;
 
 /**
  * 
+ * <!-- https://mvnrepository.com/artifact/com.glazedlists/glazedlists -->
  *
  */
+
 @SuppressWarnings("serial")
 public class AutoSuggestorJComboBox extends JComboBox<String>{
 
